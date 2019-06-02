@@ -17,7 +17,7 @@ public class ChineseFilter implements Filter{
 		
 	}
 
-	// ÖÐÎÄ¹ýÂË
+	// ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
