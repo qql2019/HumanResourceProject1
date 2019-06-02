@@ -1,0 +1,16 @@
+package com.cosi.iservice;
+
+import java.util.List;
+
+import com.cosi.vo.Dept;
+
+public interface IDeptService {
+
+	public void saveDept(Dept dept);
+	public void updateDept(Dept dept);
+	public void deleteDeptById(int id);
+	public Dept getDeptById(int id);
+	public List<Dept> getDepts();
+	public void deleteDepts(int[] ids);
+	
+}

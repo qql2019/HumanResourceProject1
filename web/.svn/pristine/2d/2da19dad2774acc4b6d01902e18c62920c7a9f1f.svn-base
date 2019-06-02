@@ -1,0 +1,32 @@
+package com.cosi.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cosi.vo.Dept;
+
+@Controller
+@RequestMapping("/dept")
+public class DeptController {
+
+	// 在方法的返回值之前标注@ResponseBody注解，提示以json格式返回数据（Object）
+	@RequestMapping("/getdeptsjson.do")
+	public @ResponseBody Map<String,Object> getDeptsJson(){
+		List<Dept> depts = new ArrayList<>();
+		depts.add(new Dept(10,"研发部","西安"));
+		depts.add(new Dept(20,"销售部","北京"));
+		Map<String,Object> result = new HashMap<>();
+		result.put("rows", depts);
+		result.put("total", depts.size());
+		return result;
+	}
+	
+
+	
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+            http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" 
+            version="3.1" metadata-complete="true">
+            
+            <!-- 1、添加监听器，在web启动时，加载spring容器 -->
+            <listener>
+            	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+            </listener>
+            
+            <context-param>
+            	<param-name>contextConfigLocation</param-name>
+            	<param-value>classpath:spring-mybatis.xml</param-value>
+            </context-param>
+            
+            <!-- 2、加载对中文处理的过滤器 -->
+            <filter>
+            	<filter-name>Chinese filter</filter-name>
+            	<filter-class>com.cosi.filter.ChineseFilter</filter-class>
+            </filter>
+            <filter-mapping>
+            	<filter-name>Chinese filter</filter-name>
+            	<url-pattern>*</url-pattern>
+            </filter-mapping>
+            
+            <!-- 3、引入DispatherServlet作为整个web项目的前端控制器 -->
+            <servlet>
+            	<servlet-name>springmvc</servlet-name>
+            	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+            	<load-on-startup>1</load-on-startup>
+            </servlet>
+            <servlet-mapping>
+            	<servlet-name>springmvc</servlet-name>
+            	<url-pattern>*.do</url-pattern>
+            </servlet-mapping>
+            
+</web-app>
+

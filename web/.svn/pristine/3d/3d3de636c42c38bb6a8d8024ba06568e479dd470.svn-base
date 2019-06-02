@@ -1,0 +1,60 @@
+package com.cosi.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cosi.iservice.IDeptService;
+import com.cosi.vo.Dept;
+
+@Controller
+@RequestMapping("/dept")
+public class DeptController {
+
+	@Autowired
+	@Qualifier("deptService")
+	private IDeptService deptService;
+	
+	private Map<String,Object> getDeptsMap(){
+		List<Dept> depts = deptService.getDepts();
+		Map<String,Object> result = new HashMap<>();
+		result.put("rows", depts);
+		result.put("total", depts.size());
+		return result;
+	}
+	
+	
+	// 在方法的返回值之前标注@ResponseBody注解，提示以json格式返回数据（Object）
+	@RequestMapping("/getdeptsjson.do")
+	public @ResponseBody Map<String,Object> getDeptsJson(){	
+		return getDeptsMap();
+	}
+	
+	// 添加dept操作
+	@RequestMapping("/save.do")
+	public @ResponseBody Map<String,Object> saveDept(Dept dept){	
+		deptService.saveDept(dept);		
+		return getDeptsMap();
+	}
+	
+	// 批量删除dept操作
+	@RequestMapping("/delete.do")
+	public @ResponseBody Map<String,Object> saveDept(String ids){	
+		String[] idsArray = ids.split(",");
+		int idsInt[] = new int[idsArray.length];
+		for (int i=0;i<idsInt.length;i++){
+			idsInt[i] = Integer.parseInt(idsArray[i]);
+		}
+		deptService.deleteDepts(idsInt);		
+		return getDeptsMap();
+	}
+
+	
+}

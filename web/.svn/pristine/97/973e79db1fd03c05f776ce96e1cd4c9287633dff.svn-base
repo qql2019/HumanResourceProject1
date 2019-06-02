@@ -1,0 +1,74 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Layout - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="css/icon.css">
+	<link rel="stylesheet" type="text/css" href="css/icon.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+</head>
+<body class="easyui-layout">
+	
+		<div data-options="region:'north'" style="height:50px"></div>
+		<div data-options="region:'south',split:true" style="height:50px;"></div>
+		<div data-options="region:'west',split:true" title="功能菜单" style="width:13%;">
+		<ul class="easyui-tree">
+			<li>
+				<span>系统功能</span>
+				<ul>
+					<li data-options="state:'closed'">
+						<span>用户管理</span>
+						<ul>
+							<li>
+								<span>查看用户</span>
+							</li>
+							<li>
+								<span>查看管理员</span>
+							</li>
+							<li>
+								<span>添加管理员</span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span>员工管理</span>
+						<ul>
+							<li>添加员工</li>
+							<li>查看员工</li>
+							<li>查询部门员工</li>
+							<li>删除员工</li>
+						</ul>
+					</li>
+					<li>部门管理</li>
+					<li>全部保存</li>
+					<li>退出系统</li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+		<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+			<table class="easyui-datagrid"
+					data-options="url:'getusersjson.do',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true,toolbar:'#toolbar',pagination:true">
+				<thead>
+					<tr>
+						<th data-options="field:'ck',checkbox:true">全选</th>
+						<th data-options="field:'id',align:'right'" width="100">ID号</th>
+						<th data-options="field:'name'" width="100">名称</th>
+						<th data-options="field:'sex'" width="100">性别</th>
+						<th data-options="field:'age',align:'right'" width="80">年龄</th>
+					</tr>
+				</thead>
+			</table>
+			<div id="toolbar">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+			</div>
+		</div>
+
+</body>
+</html>

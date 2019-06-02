@@ -1,0 +1,66 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>人力资源管理系统</title>
+	<link rel="stylesheet" type="text/css" href="css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="css/icon.css">
+	<link rel="stylesheet" type="text/css" href="css/icon.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 设置数据表格控件属性与事件
+			$('#dg').datagrid({
+				title:'部门详细列表',
+				iconCls:'icon-edit',
+				url:'dept/getdeptsjson.do',
+				queryParams:{page:1,rows:10},
+				border:true,
+				width:700,
+				heigth:'auto',
+				striped:true,     // 当true时，单元格显示条纹
+				nowrap:true,
+				collapsible:false,// 不可折叠
+				fit:true,
+				fitColumns:true,  
+				singleSelect:true, // 是否单选
+				rownumbers:true,  // 行号
+				pagination:true,  // 分页控件
+				toolbar:"#toolbar"
+			});
+			
+			var p = $('#dg').datagrid('getPager');
+			
+			$(p).pagination({
+				pageSize:10, // 每页记录数
+				pageList: [5,10,15], // 每页可选多少条记录
+				beforePageText:'第', // 页数文本框前显示的字
+				afterPageText:'页 共{pages}页',
+				displayMsg:'当前显示{from}-{to}条记录 共{total}条记录'
+				
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<table id="dg" 	style="width: 100%; height: 100%">
+				<thead>
+					<tr>
+						<th data-options="field:'ck',checkbox:true" width="30">全选</th>
+						<th data-options="field:'deptno',align:'right'" width="100">部门编号</th>
+						<th data-options="field:'dname'" width="100">部门名称</th>
+						<th data-options="field:'loc'" width="100">部门位置</th>
+					</tr>
+				</thead>
+	</table>
+			<div id="toolbar">
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新建用户</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑用户</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除用户</a>
+			</div>
+</body>
+</html>

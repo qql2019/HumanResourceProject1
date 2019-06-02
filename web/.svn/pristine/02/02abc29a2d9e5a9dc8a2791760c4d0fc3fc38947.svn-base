@@ -1,0 +1,28 @@
+package com.cosi.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.cosi.iservice.IUserService;
+import com.cosi.vo.User;
+
+@Controller
+public class UserController {
+
+	@Autowired
+	@Qualifier("userService")
+	private IUserService userService;
+	
+	public ModelAndView showUsers(){
+		ModelAndView mv = new ModelAndView();
+		List<User> users = userService.getUsers();
+		mv.addObject("users",users);
+		mv.setViewName("showusers.jsp");
+		return mv;
+	}
+	
+}

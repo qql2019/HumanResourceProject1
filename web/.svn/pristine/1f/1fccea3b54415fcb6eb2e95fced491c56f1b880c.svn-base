@@ -1,0 +1,9 @@
+<html>
+<body>
+<h2></h2>
+${users[0].id}
+${users[0].name}
+${users[0].sex}
+${users[0].age}
+</body>
+</html>
