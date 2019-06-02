@@ -25,7 +25,12 @@ public class PageBean {
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "PageBean{" +
+				"page=" + page +
+				", rows=" + rows +
+				'}';
+	}
 }
